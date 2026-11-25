@@ -46,6 +46,27 @@ def first_int(path, default=0):
     return int(l[0]) if l and l[0].isdigit() else default
 
 
+def hosting_ok(base, files, sample=12, tries=3):
+    """True when a random sample of cards that are already live answers 200 from the public host."""
+    import random, urllib.request
+    if not files:
+        return True
+    picks = random.sample(files, min(sample, len(files)))
+    for attempt in range(tries):
+        bad = 0
+        for f in picks:
+            try:
+                req = urllib.request.Request(f"{base}/{f}", method="HEAD", headers={"User-Agent": "dpa-cards-check"})
+                if urllib.request.urlopen(req, timeout=20).status != 200:
+                    bad += 1
+            except Exception:
+                bad += 1
+        if bad <= len(picks) // 4:
+            return True
+        time.sleep(20 * (attempt + 1))
+    return False
+
+
 def write_text(path, text):
     with open(os.path.join(ROOT, path), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(text)
@@ -138,6 +159,11 @@ def main():
     # in the CSV, and when it must go back to the store photo its row carries the store photo URL.
     pub_path = os.path.join(ROOT, "feed", "published.json")
     published = json.load(open(pub_path, encoding="utf-8")) if os.path.exists(pub_path) else {}
+    # Unattended safety: if the public host stops serving cards that are already live, Meta would fail to
+    # fetch them. Then this run sends every product back to its store photo, and the next healthy run restores.
+    if base and not paused and not a.dry and not hosting_ok(base, [manifest[i]["file"] for i in published if i in manifest]):
+        print("SAFETY: card host not reachable, sending all products back to the store photo for this run")
+        paused = True
     rows, with_card = [], set()
     if not paused:
         for pid in live_ids:
