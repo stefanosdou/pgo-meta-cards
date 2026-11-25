@@ -1,4 +1,4 @@
-# Hourly: read the store, classify, render missing cards, rebuild the supplementary feed.
+# Hourly: read the store, classify, render missing cards, advance the rollout, rebuild the supplementary feed.
 # No secrets are needed: the store API is public and Meta reads the CSV from GitHub Pages.
 name: feed
 on:
@@ -27,6 +27,8 @@ jobs:
         run: |
           git config user.name "cards-bot"
           git config user.email "cards-bot@users.noreply.github.com"
-          git add cards feed data/classified.json data/coverage.json
-          git diff --cached --quiet || git commit -m "cards: hourly build"
+          git add cards feed data/classified.json data/coverage.json supp_count.txt
+          git diff --cached --quiet && exit 0
+          git commit -m "cards: hourly build"
+          git pull --rebase
           git push

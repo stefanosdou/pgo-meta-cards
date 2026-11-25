@@ -54,7 +54,7 @@
   ],
   "price_on_card": false,
   "rollout": {
-    "cards_per_run": 60,
+    "cards_per_run": 300,
     "ids_per_hour": 300
   },
   "pages_base_url": "https://stefanosdou.github.io/pgo-meta-cards",
