@@ -34,6 +34,7 @@ ROOT, CFG = cards.ROOT, cards.CFG
 QC_MIN_SHARE = 0.10   # product must cover at least 10% of the photo area of the card
 SAVE_EVERY = 25
 DOWNLOAD_THREADS = 4  # polite to the store: a few at a time, each photo once (disk cache)
+STEP_GAP = 50 * 60    # seconds between two rollout steps
 
 
 def read_lines(path):
@@ -95,10 +96,17 @@ def main():
     def save_manifest():
         write_text("cards/manifest.json", json.dumps(manifest, ensure_ascii=False, indent=0))
 
-    # automatic rollout step
+    # automatic rollout step, at most one per STEP_GAP: two runs in the same hour (cron plus the
+    # self-restarting chain, or a manual run) must not double the pace
+    last_step = first_int("supp_last_step.txt")
     if target >= 0 and count != target and not a.no_step and not a.dry and not paused:
-        count = min(target, count + CFG["rollout"]["ids_per_hour"]) if count < target else target
-        write_text("supp_count.txt", f"{count}\n")
+        if count > target:
+            count = target
+            write_text("supp_count.txt", f"{count}\n")
+        elif time.time() - last_step >= STEP_GAP:
+            count = min(target, count + CFG["rollout"]["ids_per_hour"])
+            write_text("supp_count.txt", f"{count}\n")
+            write_text("supp_last_step.txt", f"{int(time.time())}\n")
 
     eligible = {str(p["id"]): p for p in prods if not p["skip"] and p["family"] not in CFG["exclude_families"]}
     if not order:
