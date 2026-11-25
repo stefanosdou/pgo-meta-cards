@@ -22,15 +22,15 @@
  },
  "diapers": {
   "label": "Παιδικές πάνες",
-  "n": 346,
+  "n": 345,
   "facts": {
-   "kg": 337,
-   "size_no": 335,
-   "brand": 334,
-   "pieces": 317,
-   "unit_price": 317,
-   "line": 312,
-   "pack": 234,
+   "kg": 336,
+   "size_no": 334,
+   "brand": 333,
+   "pieces": 316,
+   "unit_price": 316,
+   "line": 311,
+   "pack": 233,
    "multi": 39,
    "dims": 2
   }
@@ -77,10 +77,10 @@
  },
  "oral": {
   "label": "Στοματική υγιεινή",
-  "n": 99,
+  "n": 100,
   "facts": {
    "brand": 99,
-   "volume": 34,
+   "volume": 35,
    "pieces": 27
   }
  },
@@ -99,24 +99,24 @@
  },
  "home": {
   "label": "Σπίτι & Απορρυπαντικά",
-  "n": 218,
+  "n": 219,
   "facts": {
-   "brand": 216,
+   "brand": 217,
    "volume": 124,
    "pieces": 52,
-   "washes": 50,
+   "washes": 51,
    "dims": 10,
    "multi": 4
   }
  },
  "baby": {
   "label": "Βρεφικά, φροντίδα & παιχνίδια",
-  "n": 327,
+  "n": 328,
   "facts": {
-   "brand": 289,
+   "brand": 290,
    "volume": 122,
    "age": 77,
-   "pieces": 58,
+   "pieces": 59,
    "multi": 5
   }
  },

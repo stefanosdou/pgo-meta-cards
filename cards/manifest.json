@@ -25576,5 +25576,47 @@
 "name": "Sterimar Blocked Nose Ρινικό Αποσυμφορητικό για Ενήλικες & Παιδιά 100ml",
 "price": 9.99
 }
+},
+"1501825": {
+"hash": "5c152b4b2d",
+"file": "cards/1501825-5c152b4b2d.jpg",
+"concept": "C5",
+"family": "home",
+"share": 0.187,
+"qc": true,
+"built": "2026-11-25T15:07:09",
+"from": {
+"image": "https://www.panesgiaolous.gr/wp-content/uploads/2023/09/Baby-planet-baby-softener-μαλακτικο-ρουχων-baby-powder-40-πλυσεις-1.webp",
+"name": "Baby planet baby softener μαλακτικο ρουχων baby powder 40 πλυσεις",
+"price": 2.99
+}
+},
+"1436605": {
+"hash": "30c97adece",
+"file": "cards/1436605-30c97adece.jpg",
+"concept": "C5",
+"family": "baby",
+"share": 0.274,
+"qc": true,
+"built": "2026-11-25T15:07:09",
+"from": {
+"image": "https://www.panesgiaolous.gr/wp-content/uploads/2023/01/Matchstick-Monkey-Κουτάλια-Φαγητού-Σετ-2τμχ-Feeding-Spoons-Dusty-Pink.jpeg",
+"name": "Matchstick Monkey Κουτάλια Φαγητού (Σετ 2τμχ) Feeding Spoons Dusty Pink",
+"price": 15.99
+}
+},
+"942844": {
+"hash": "759052dc22",
+"file": "cards/942844-759052dc22.jpg",
+"concept": "C5",
+"family": "oral",
+"share": 0.154,
+"qc": true,
+"built": "2026-11-25T15:07:09",
+"from": {
+"image": "https://www.panesgiaolous.gr/wp-content/uploads/2020/04/b3038fb0ee01935fdbaaffef199736ad.jpg",
+"name": "Frezyderm Mouth Spray Odor Blocker, Σπρέι Στόματος Κατά της Κακοσμίας 50ml",
+"price": 5.1
+}
 }
 }
