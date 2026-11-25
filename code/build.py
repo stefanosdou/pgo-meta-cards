@@ -133,7 +133,12 @@ def main():
                 failed += 1
                 print("render failed", pid, e)
 
-    rows = []
+    # Meta accepts only "update" uploads for a supplementary feed: a row that disappears from the CSV keeps
+    # its last image (checked on the live catalog, 2026-11-25). So every product that ever got a card stays
+    # in the CSV, and when it must go back to the store photo its row carries the store photo URL.
+    pub_path = os.path.join(ROOT, "feed", "published.json")
+    published = json.load(open(pub_path, encoding="utf-8")) if os.path.exists(pub_path) else {}
+    rows, with_card = [], set()
     if not paused:
         for pid in live_ids:
             p, m = eligible[pid], manifest.get(pid)
@@ -144,10 +149,21 @@ def main():
             if CFG.get("enrich_catalog_fields"):
                 row.update({"product_type": p["family_label"], "custom_label_0": p["family"], "brand": p["facts"].get("brand", "")})
             rows.append(row)
+            with_card.add(pid)
+            published[pid] = p["image"]
+    all_prods = {str(p["id"]): p for p in prods}
+    reverted = 0
+    for pid, store_photo in published.items():
+        if pid in with_card:
+            continue
+        current = all_prods.get(pid, {}).get("image") or store_photo   # the store's photo as it is now
+        published[pid] = current
+        rows.append({"id": pid, "image_link": current})
+        reverted += 1
 
     print(f"eligible {len(eligible)} | cards ready {len(manifest)} | waiting for a card {waiting - rendered} | rendered now {rendered} | "
           f"changed on site {stale} | failed {failed} | rollout {count}" + (f" of target {target}" if target >= 0 else "") +
-          f" | in CSV {len(rows)} | holdout {len(holdout)} | paused {paused}")
+          f" | in CSV {len(rows)} (cards {len(with_card)}, back to store photo {reverted}) | holdout {len(holdout)} | paused {paused}")
     if a.dry:
         return
     if not base and rows:
@@ -159,6 +175,7 @@ def main():
         w = csv.DictWriter(fh, fieldnames=fields, lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
+    write_text("feed/published.json", json.dumps(published, ensure_ascii=False, indent=0, sort_keys=True))
     # remove card files that no manifest entry points to
     keep = {os.path.basename(m["file"]) for m in manifest.values()}
     for f in os.listdir(os.path.join(ROOT, "cards")):
