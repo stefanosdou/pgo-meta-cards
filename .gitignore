@@ -1,0 +1,6 @@
+data/img_cache/
+data/products.json
+data/meta_product_stats.csv
+data/test_pairs.json
+__pycache__/
+out/

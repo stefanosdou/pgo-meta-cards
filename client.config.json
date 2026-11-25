@@ -1,0 +1,62 @@
+{
+  "client": "Panes Gia Olous (PGO)",
+  "site": "https://www.panesgiaolous.gr",
+  "design_version": "c5-nologo-1",
+  "live_concept": "C5",
+  "brand": {
+    "wordmark": "PANESGIAOLOUS",
+    "colors": {
+      "cream": "#FBEFE3",
+      "cream_deep": "#F6E2CF",
+      "orange": "#E07A1F",
+      "pill_top": "#F08A24",
+      "pill_bottom": "#D9640F",
+      "dark": "#3C2819",
+      "white": "#FFFFFF",
+      "kbeauty_top": "#FF74AE",
+      "kbeauty_bottom": "#F0438C"
+    },
+    "fonts": {
+      "logo": [
+        "fonts/bold.ttf"
+      ],
+      "bold": [
+        "fonts/bold.ttf"
+      ],
+      "black": [
+        "fonts/bold.ttf"
+      ]
+    }
+  },
+  "store_usps": [
+    "Αποστολή σε 24-48 ώρες",
+    "Box Now 24/7",
+    "22 χρόνια στις πάνες"
+  ],
+  "store_usps_evidence": "Home page panesgiaolous.gr, read 2026-11-25: «αποστολή σε 24–48 ώρες σε όλη την Ελλάδα», «Box Now θυρίδα 24/7», «22 χρόνια στις πάνες».",
+  "unit_price_bounds": {
+    "diapers": [
+      0.08,
+      0.9
+    ],
+    "incontinence": [
+      0.1,
+      3.5
+    ],
+    "wipes": [
+      0.005,
+      0.12
+    ]
+  },
+  "exclude_families": [
+    "sex",
+    "other"
+  ],
+  "price_on_card": false,
+  "rollout": {
+    "cards_per_run": 60,
+    "ids_per_hour": 300
+  },
+  "pages_base_url": "https://stefanosdou.github.io/pgo-meta-cards",
+  "enrich_catalog_fields": false
+}

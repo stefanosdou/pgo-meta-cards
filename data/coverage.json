@@ -1,0 +1,138 @@
+{
+ "sex": {
+  "label": "Sex (προφυλακτικά, λιπαντικά)",
+  "n": 60,
+  "facts": {
+   "brand": 59,
+   "volume": 22,
+   "pieces": 14
+  }
+ },
+ "korean": {
+  "label": "Korean Beauty",
+  "n": 194,
+  "facts": {
+   "brand": 193,
+   "type": 186,
+   "volume": 156,
+   "ingredient": 122,
+   "pieces": 25,
+   "spf": 15
+  }
+ },
+ "diapers": {
+  "label": "Παιδικές πάνες",
+  "n": 346,
+  "facts": {
+   "kg": 337,
+   "size_no": 335,
+   "brand": 334,
+   "pieces": 317,
+   "unit_price": 317,
+   "line": 312,
+   "pack": 234,
+   "multi": 39,
+   "dims": 2
+  }
+ },
+ "incontinence": {
+  "label": "Ακράτεια",
+  "n": 119,
+  "facts": {
+   "pieces": 114,
+   "unit_price": 111,
+   "brand": 110,
+   "size": 78,
+   "absorb": 72,
+   "line": 46,
+   "pack": 34,
+   "multi": 19,
+   "dims": 18,
+   "size_no": 16,
+   "kg": 1
+  }
+ },
+ "vitamins": {
+  "label": "Βιταμίνες & Συμπληρώματα",
+  "n": 195,
+  "facts": {
+   "brand": 194,
+   "need": 189,
+   "count": 166,
+   "dose": 95,
+   "volume": 11,
+   "multi": 5,
+   "pieces": 5
+  }
+ },
+ "wipes": {
+  "label": "Μωρομάντηλα",
+  "n": 51,
+  "facts": {
+   "pieces": 51,
+   "unit_price": 51,
+   "brand": 48,
+   "multi": 29
+  }
+ },
+ "oral": {
+  "label": "Στοματική υγιεινή",
+  "n": 99,
+  "facts": {
+   "brand": 99,
+   "volume": 34,
+   "pieces": 27
+  }
+ },
+ "cosmetics": {
+  "label": "Καλλυντικά & Περιποίηση",
+  "n": 244,
+  "facts": {
+   "brand": 239,
+   "volume": 222,
+   "type": 197,
+   "ingredient": 29,
+   "spf": 17,
+   "pieces": 13,
+   "multi": 1
+  }
+ },
+ "home": {
+  "label": "Σπίτι & Απορρυπαντικά",
+  "n": 218,
+  "facts": {
+   "brand": 216,
+   "volume": 124,
+   "pieces": 52,
+   "washes": 50,
+   "dims": 10,
+   "multi": 4
+  }
+ },
+ "baby": {
+  "label": "Βρεφικά, φροντίδα & παιχνίδια",
+  "n": 328,
+  "facts": {
+   "brand": 290,
+   "volume": 122,
+   "age": 77,
+   "pieces": 59,
+   "multi": 5
+  }
+ },
+ "health": {
+  "label": "Υγεία & Υγιεινή",
+  "n": 35,
+  "facts": {
+   "brand": 35,
+   "pieces": 22,
+   "volume": 3,
+   "dims": 3
+  }
+ },
+ "other": {
+  "label": "Λοιπά",
+  "n": 9,
+  "facts": {}
+ }
+}
