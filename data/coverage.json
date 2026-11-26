@@ -37,18 +37,18 @@
  },
  "incontinence": {
   "label": "Ακράτεια",
-  "n": 119,
+  "n": 118,
   "facts": {
-   "pieces": 114,
-   "unit_price": 111,
-   "brand": 110,
-   "size": 78,
+   "pieces": 113,
+   "unit_price": 110,
+   "brand": 109,
+   "size": 77,
    "absorb": 72,
-   "line": 46,
-   "pack": 34,
-   "multi": 19,
+   "line": 45,
+   "pack": 33,
    "dims": 18,
-   "size_no": 16,
+   "multi": 18,
+   "size_no": 15,
    "kg": 1
   }
  },
@@ -99,10 +99,10 @@
  },
  "home": {
   "label": "Σπίτι & Απορρυπαντικά",
-  "n": 219,
+  "n": 218,
   "facts": {
-   "brand": 217,
-   "volume": 124,
+   "brand": 216,
+   "volume": 123,
    "pieces": 52,
    "washes": 51,
    "dims": 10,
