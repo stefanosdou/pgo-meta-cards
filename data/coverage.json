@@ -54,12 +54,12 @@
  },
  "vitamins": {
   "label": "Βιταμίνες & Συμπληρώματα",
-  "n": 195,
+  "n": 194,
   "facts": {
-   "brand": 194,
-   "need": 189,
-   "count": 166,
-   "dose": 95,
+   "brand": 193,
+   "need": 188,
+   "count": 165,
+   "dose": 94,
    "volume": 11,
    "multi": 5,
    "pieces": 5
