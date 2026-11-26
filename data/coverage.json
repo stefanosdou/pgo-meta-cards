@@ -67,12 +67,12 @@
  },
  "wipes": {
   "label": "Μωρομάντηλα",
-  "n": 50,
+  "n": 49,
   "facts": {
-   "pieces": 50,
-   "unit_price": 50,
-   "brand": 47,
-   "multi": 28
+   "pieces": 49,
+   "unit_price": 49,
+   "brand": 46,
+   "multi": 27
   }
  },
  "oral": {
