@@ -1,0 +1,6 @@
+# Store products that the Meta catalog does not have (not in the primary feed). One id per line.
+# Find them in the upload session errors of the supplementary feed: "Some product content IDs do not match".
+1340743
+1340765
+1340770
+1342087

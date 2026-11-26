@@ -3,6 +3,10 @@
 #
 # GitHub's cron skips runs, so the workflow also restarts itself: after each build a second job waits
 # about 55 minutes and starts the next run. The cron stays as a watchdog that revives the chain if it stops.
+#
+# Two runs can start in the same minute (cron plus chain). Builds run one at a time, and each one checks out
+# the newest main when it starts, not the commit that existed when it was queued. If publishing still fails
+# (another push in between, or a server error), the build is repeated on top of the newest main.
 name: feed
 on:
   schedule:
@@ -20,6 +24,8 @@ jobs:
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -31,11 +37,24 @@ jobs:
         run: |
           git config user.name "cards-bot"
           git config user.email "cards-bot@users.noreply.github.com"
-          git add cards feed data/classified.json data/coverage.json supp_count.txt supp_last_step.txt
-          git diff --cached --quiet && exit 0
-          git commit -m "cards: hourly build"
-          git pull --rebase
-          git push
+          for attempt in 1 2 3; do
+            git add cards feed data/classified.json data/coverage.json supp_count.txt supp_last_step.txt
+            if git diff --cached --quiet; then echo "nothing to publish"; exit 0; fi
+            git commit -q -m "cards: hourly build"
+            for try in 1 2 3; do
+              if ! git pull --rebase; then break; fi
+              if git push; then exit 0; fi
+              sleep 30
+            done
+            echo "publish failed (attempt $attempt), rebuilding on the newest main"
+            git rebase --abort 2>/dev/null || true
+            git fetch origin main
+            git reset --hard origin/main
+            python code/classify.py
+            python code/build.py
+          done
+          echo "could not publish after 3 attempts"
+          exit 1
   again:
     needs: build
     if: always()
@@ -46,10 +65,13 @@ jobs:
     steps:
       - name: Keep one chain alive
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            others=$(gh run list --repo "${{ github.repository }}" --workflow feed.yml --event workflow_dispatch --json status,databaseId \
-              --jq '[.[] | select(.status != "completed")] | length')
-            if [ "$others" != "0" ]; then echo "chain is alive, nothing to do"; exit 0; fi
-          fi
+          # other chain runs that are still alive (a manual start also begins a chain)
+          alive() {
+            gh run list --repo "${{ github.repository }}" --workflow feed.yml --event workflow_dispatch --json status,databaseId \
+              --jq '[.[] | select(.status != "completed" and .databaseId != ${{ github.run_id }})] | length'
+          }
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(alive)" != "0" ]; then echo "chain is alive, nothing to do"; exit 0; fi
           sleep 3300
+          # checked again after the wait, so two chains merge back into one
+          if [ "$(alive)" != "0" ]; then echo "another chain run is alive, it continues"; exit 0; fi
           gh workflow run feed.yml --repo "${{ github.repository }}" --ref main

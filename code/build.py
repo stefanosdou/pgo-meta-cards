@@ -12,9 +12,13 @@ Safety rules:
   - rollout: only the first supp_count.txt ids of supp_order.txt are in the CSV
   - test: ids in switches/holdout.txt keep the site photo (control half)
   - a file named PAUSE in the repo root empties the CSV: every product goes back to the site photo
+  - ids in switches/not_in_catalog.txt are left out completely: the store has them, the Meta catalog does not,
+    and a supplementary feed cannot create items (Meta reports such rows as invalid on every upload)
 
 Automatic rollout: when supp_target.txt holds a number above supp_count.txt, every run raises
 supp_count.txt by rollout.ids_per_hour until it reaches the target. Go-live is one number in one file.
+Once the rollout covers the whole of supp_order.txt, products that are not in that file (new on the store)
+go live as soon as their card exists.
 
 Cards are rendered ahead of the rollout for the whole order, photos are downloaded in parallel and the
 manifest is saved every 25 cards, so a partial run can be committed and loses nothing if it stops.
@@ -86,6 +90,7 @@ def main():
     switches = json.load(open(sw_path, encoding="utf-8")) if os.path.exists(sw_path) else {}
     concept_for = lambda fam: switches.get(fam) or switches.get("default")
     holdout = set(read_lines("switches/holdout.txt"))
+    not_in_catalog = {x for x in read_lines("switches/not_in_catalog.txt") if x and not x.startswith("#")}
     order = [x for x in read_lines("supp_order.txt") if x]
     count, target = first_int("supp_count.txt"), first_int("supp_target.txt", -1)
     paused = os.path.exists(os.path.join(ROOT, "PAUSE"))
@@ -108,10 +113,14 @@ def main():
             write_text("supp_count.txt", f"{count}\n")
             write_text("supp_last_step.txt", f"{int(time.time())}\n")
 
-    eligible = {str(p["id"]): p for p in prods if not p["skip"] and p["family"] not in CFG["exclude_families"]}
+    eligible = {str(p["id"]): p for p in prods if not p["skip"] and p["family"] not in CFG["exclude_families"]
+                and str(p["id"]) not in not_in_catalog}
     if not order:
         order = list(eligible)
     live_ids = [i for i in order[:count] if i in eligible and i not in holdout]
+    if count >= len(order):     # rollout finished: products added to the store later join automatically
+        in_order = set(order)
+        live_ids += [i for i in eligible if i not in in_order and i not in holdout]
     render_ids = [i for i in order if i in eligible and i not in holdout]
     seen = set(render_ids)
     render_ids += [i for i in eligible if i not in seen and i not in holdout]
@@ -167,6 +176,8 @@ def main():
     # in the CSV, and when it must go back to the store photo its row carries the store photo URL.
     pub_path = os.path.join(ROOT, "feed", "published.json")
     published = json.load(open(pub_path, encoding="utf-8")) if os.path.exists(pub_path) else {}
+    for pid in not_in_catalog:      # never existed in the catalog, so there is nothing to send back either
+        published.pop(pid, None)
     # Unattended safety: if the public host stops serving cards that are already live, Meta would fail to
     # fetch them. Then this run sends every product back to its store photo, and the next healthy run restores.
     if base and not paused and not a.dry and not hosting_ok(base, [manifest[i]["file"] for i in published if i in manifest]):
