@@ -22,16 +22,16 @@
  },
  "diapers": {
   "label": "Παιδικές πάνες",
-  "n": 351,
+  "n": 348,
   "facts": {
-   "kg": 342,
-   "size_no": 340,
-   "brand": 339,
-   "pieces": 319,
-   "unit_price": 319,
-   "line": 314,
-   "pack": 236,
-   "multi": 42,
+   "kg": 339,
+   "size_no": 337,
+   "brand": 336,
+   "pieces": 317,
+   "unit_price": 317,
+   "line": 311,
+   "pack": 235,
+   "multi": 40,
    "dims": 2
   }
  },
