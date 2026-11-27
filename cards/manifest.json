@@ -25618,5 +25618,89 @@
 "name": "Frezyderm Mouth Spray Odor Blocker, Σπρέι Στόματος Κατά της Κακοσμίας 50ml",
 "price": 5.1
 }
+},
+"1896291": {
+"hash": "f160cf5b74",
+"file": "cards/1896291-f160cf5b74.jpg",
+"concept": "C5",
+"family": "diapers",
+"share": 0.603,
+"qc": true,
+"built": "2026-11-27T07:54:56",
+"from": {
+"image": "https://www.panesgiaolous.gr/wp-content/uploads/2026/06/Septona-πανα-βρακακι-mega-monthly-pack-Extra-large-Plus-pants-no7-15kg-5x28-τμχ-140-πανες-βρακακι-1-.png",
+"name": "Septona πανα βρακακι mega monthly pack Extra large Plus pants no7 15+kg (5×28 τμχ) 140 πανες βρακακι",
+"price": 49.99
+}
+},
+"1896152": {
+"hash": "38a8e3eb3a",
+"file": "cards/1896152-38a8e3eb3a.jpg",
+"concept": "C5",
+"family": "diapers",
+"share": 0.602,
+"qc": true,
+"built": "2026-11-27T07:54:56",
+"from": {
+"image": "https://www.panesgiaolous.gr/wp-content/uploads/2026/06/Septona-παιδικες-πανες-mega-monthly-pack-Extra-Large-Plus-15kg-No7-180-πανες-22.png",
+"name": "Septona παιδικες πανες mega monthly pack Extra Large Plus 15+kg No7 180 πανες",
+"price": 39.99
+}
+},
+"1896111": {
+"hash": "ebd89193f7",
+"file": "cards/1896111-ebd89193f7.jpg",
+"concept": "C5",
+"family": "diapers",
+"share": 0.474,
+"qc": true,
+"built": "2026-11-27T07:54:56",
+"from": {
+"image": "https://www.panesgiaolous.gr/wp-content/uploads/2026/06/Septona-παιδικες-πανες-monthly-pack-Extra-Large-Plus-15kg-No7-4x36-τμχ-144-πανες.png",
+"name": "Septona παιδικες πανες monthly pack Extra Large Plus 15+kg No7 144 πανες",
+"price": 29.99
+}
+},
+"1857758": {
+"hash": "225f126e06",
+"file": "cards/1857758-225f126e06.jpg",
+"concept": "C5",
+"family": "diapers",
+"share": 0.478,
+"qc": true,
+"built": "2026-11-27T07:54:56",
+"from": {
+"image": "https://www.panesgiaolous.gr/wp-content/uploads/2026/02/10-GIGA-BOX-Pants-No7-XL_PLUS-84pcs-1-2-scaled.png",
+"name": "Septona πανα βρακακι giga box Extra large Plus pants no7 15+kg (3×28 τμχ) 84 πανες βρακακι",
+"price": 25.2
+}
+},
+"1857757": {
+"hash": "4344bdcce3",
+"file": "cards/1857757-4344bdcce3.jpg",
+"concept": "C5",
+"family": "diapers",
+"share": 0.487,
+"qc": true,
+"built": "2026-11-27T07:54:57",
+"from": {
+"image": "https://www.panesgiaolous.gr/wp-content/uploads/2026/02/11-GIGA-BOX-Open-No7-XL_PLUS-108pcs-1-2-scaled.png",
+"name": "Septona παιδικες πανες giga pack Extra Large Plus 15+kg No7 (3×36 τμχ) 108 πανες",
+"price": 23.99
+}
+},
+"1855377": {
+"hash": "717aa2e034",
+"file": "cards/1855377-717aa2e034.jpg",
+"concept": "C5",
+"family": "diapers",
+"share": 0.68,
+"qc": true,
+"built": "2026-11-27T07:54:57",
+"from": {
+"image": "https://www.panesgiaolous.gr/wp-content/uploads/2026/02/Septona-πανα-βρακακι-Extra-Large-Plus-pants-no7-15kg-28-πανες-βρακακι.webp",
+"name": "Septona πανα βρακακι Extra Large Plus pants no7 15+kg 28 πανες βρακακι",
+"price": 9.9
+}
 }
 }
