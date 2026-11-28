@@ -99,12 +99,12 @@
  },
  "home": {
   "label": "Σπίτι & Απορρυπαντικά",
-  "n": 215,
+  "n": 214,
   "facts": {
-   "brand": 213,
+   "brand": 212,
    "volume": 120,
    "pieces": 52,
-   "washes": 50,
+   "washes": 49,
    "dims": 10,
    "multi": 4
   }
